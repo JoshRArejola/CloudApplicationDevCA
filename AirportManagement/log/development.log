@@ -725,3 +725,58 @@ Processing by PassengersController#index as JSON
 Completed 200 OK in 7ms (Views: 3.0ms | ActiveRecord: 0.1ms | Allocations: 1247)
 
 
+Started GET "/passengers" for 127.0.0.1 at 2023-12-15 19:09:29 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+SyntaxError (C:/Users/Joshr/Desktop/College/4th/Cloud Application/CloudApplicationDevCA/AirportManagement/app/controllers/passengers_controller.rb:79: syntax error, unexpected end-of-input):
+  
+app/controllers/passengers_controller.rb:79: syntax error, unexpected end-of-input
+Started GET "/passengers" for 127.0.0.1 at 2023-12-15 19:11:47 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PassengersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:6
+  Rendered passengers/_passenger.html.erb (Duration: 0.7ms | Allocations: 304)
+  Rendered passengers/_passenger.html.erb (Duration: 0.0ms | Allocations: 24)
+  Rendered passengers/_passenger.html.erb (Duration: 0.0ms | Allocations: 23)
+  Rendered passengers/index.html.erb within layouts/application (Duration: 53.0ms | Allocations: 16469)
+  Rendered layout layouts/application.html.erb (Duration: 134.4ms | Allocations: 55632)
+Completed 200 OK in 203ms (Views: 144.7ms | ActiveRecord: 4.0ms | Allocations: 66641)
+
+
+Started GET "/passengers/3" for 127.0.0.1 at 2023-12-15 19:11:52 +0000
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers" WHERE "passengers"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:73:in `set_passenger'
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/show.html.erb within layouts/application
+  Rendered passengers/_passenger.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered passengers/show.html.erb within layouts/application (Duration: 1.7ms | Allocations: 670)
+  Rendered layout layouts/application.html.erb (Duration: 16.4ms | Allocations: 2848)
+Completed 200 OK in 35ms (Views: 17.2ms | ActiveRecord: 0.1ms | Allocations: 5506)
+
+
+Started GET "/passengers" for 127.0.0.1 at 2023-12-15 19:11:54 +0000
+Processing by PassengersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:6
+  Rendered passengers/_passenger.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered passengers/_passenger.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered passengers/_passenger.html.erb (Duration: 0.0ms | Allocations: 23)
+  Rendered passengers/index.html.erb within layouts/application (Duration: 3.6ms | Allocations: 999)
+  Rendered layout layouts/application.html.erb (Duration: 11.6ms | Allocations: 3185)
+Completed 200 OK in 16ms (Views: 12.1ms | ActiveRecord: 0.1ms | Allocations: 3504)
+
+
+Started GET "/passengers" for 127.0.0.1 at 2023-12-15 19:11:56 +0000
+Processing by PassengersController#index as JSON
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/controllers/passengers_controller.rb:11:in `block (2 levels) in index'
+Completed 200 OK in 6ms (Views: 2.2ms | ActiveRecord: 0.1ms | Allocations: 1001)
+
+

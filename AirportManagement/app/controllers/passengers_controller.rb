@@ -6,10 +6,18 @@ class PassengersController < ApplicationController
   # GET /passengers or /passengers.json
   def index
     @passengers = Passenger.all
+    respond_to do |format|
+      format.html
+      format.json { render json: @passengers }
   end
+end
 
   # GET /passengers/1 or /passengers/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.json { render json: @passenger }
+    end
   end
 
   # GET /passengers/new
