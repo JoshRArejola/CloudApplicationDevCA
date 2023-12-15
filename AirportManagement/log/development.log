@@ -780,3 +780,326 @@ Processing by PassengersController#index as JSON
 Completed 200 OK in 6ms (Views: 2.2ms | ActiveRecord: 0.1ms | Allocations: 1001)
 
 
+Started GET "/passengers" for 127.0.0.1 at 2023-12-15 19:18:33 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PassengersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:6
+  Rendered passengers/_passenger.html.erb (Duration: 1.0ms | Allocations: 304)
+  Rendered passengers/_passenger.html.erb (Duration: 0.0ms | Allocations: 24)
+  Rendered passengers/_passenger.html.erb (Duration: 0.0ms | Allocations: 23)
+  Rendered passengers/index.html.erb within layouts/application (Duration: 54.3ms | Allocations: 16467)
+  Rendered layout layouts/application.html.erb (Duration: 137.5ms | Allocations: 55661)
+Completed 200 OK in 213ms (Views: 147.3ms | ActiveRecord: 3.7ms | Allocations: 66668)
+
+
+Started GET "/passengers/new" for 127.0.0.1 at 2023-12-15 19:18:35 +0000
+Processing by PassengersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (Duration: 13.3ms | Allocations: 2946)
+  Rendered passengers/new.html.erb within layouts/application (Duration: 18.5ms | Allocations: 3234)
+  Rendered layout layouts/application.html.erb (Duration: 25.8ms | Allocations: 5415)
+Completed 200 OK in 34ms (Views: 26.6ms | ActiveRecord: 0.0ms | Allocations: 5800)
+
+
+Started POST "/passengers" for 127.0.0.1 at 2023-12-15 19:18:51 +0000
+Processing by PassengersController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "passenger"=>{"checkIn"=>"1", "name"=>"Jp", "aircraft"=>"", "destination"=>"London", "gate"=>"33C"}, "commit"=>"Create Passenger"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/passengers_controller.rb:37:in `block in create'
+  [1m[36mPassenger Create (1.1ms)[0m  [1m[32mINSERT INTO "passengers" ("checkIn", "name", "aircraft", "destination", "gate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["checkIn", 1], ["name", "Jp"], ["aircraft", ""], ["destination", "London"], ["gate", "33C"], ["created_at", "2023-12-15 19:18:51.579749"], ["updated_at", "2023-12-15 19:18:51.579749"]]
+  ↳ app/controllers/passengers_controller.rb:37:in `block in create'
+  [1m[36mTRANSACTION (6.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/passengers_controller.rb:37:in `block in create'
+Redirected to http://127.0.0.1:3000/passengers/6
+Completed 302 Found in 16ms (ActiveRecord: 8.1ms | Allocations: 3390)
+
+
+Started GET "/passengers/6" for 127.0.0.1 at 2023-12-15 19:18:51 +0000
+Processing by PassengersController#show as TURBO_STREAM
+  Parameters: {"id"=>"6"}
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers" WHERE "passengers"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:73:in `set_passenger'
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/show.html.erb within layouts/application
+  Rendered passengers/_passenger.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered passengers/show.html.erb within layouts/application (Duration: 1.7ms | Allocations: 682)
+  Rendered layout layouts/application.html.erb (Duration: 8.7ms | Allocations: 2859)
+Completed 200 OK in 18ms (Views: 9.3ms | ActiveRecord: 0.1ms | Allocations: 5434)
+
+
+Started GET "/passengers/6/edit" for 127.0.0.1 at 2023-12-15 19:18:56 +0000
+Processing by PassengersController#edit as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers" WHERE "passengers"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:73:in `set_passenger'
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/edit.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (Duration: 1.5ms | Allocations: 1290)
+  Rendered passengers/edit.html.erb within layouts/application (Duration: 2.5ms | Allocations: 1549)
+  Rendered layout layouts/application.html.erb (Duration: 10.6ms | Allocations: 3758)
+Completed 200 OK in 17ms (Views: 11.2ms | ActiveRecord: 0.1ms | Allocations: 4454)
+
+
+Started PATCH "/passengers/6" for 127.0.0.1 at 2023-12-15 19:19:01 +0000
+Processing by PassengersController#update as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "passenger"=>{"checkIn"=>"1", "name"=>"Jp", "aircraft"=>"", "destination"=>"London", "gate"=>"33C"}, "commit"=>"Update Passenger", "id"=>"6"}
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers" WHERE "passengers"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:73:in `set_passenger'
+Redirected to http://127.0.0.1:3000/passengers/6
+Completed 302 Found in 6ms (ActiveRecord: 0.1ms | Allocations: 1049)
+
+
+Started GET "/passengers/6" for 127.0.0.1 at 2023-12-15 19:19:01 +0000
+Processing by PassengersController#show as TURBO_STREAM
+  Parameters: {"id"=>"6"}
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers" WHERE "passengers"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:73:in `set_passenger'
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/show.html.erb within layouts/application
+  Rendered passengers/_passenger.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered passengers/show.html.erb within layouts/application (Duration: 0.9ms | Allocations: 480)
+  Rendered layout layouts/application.html.erb (Duration: 8.0ms | Allocations: 2657)
+Completed 200 OK in 13ms (Views: 8.5ms | ActiveRecord: 0.1ms | Allocations: 3316)
+
+
+Started DELETE "/passengers/6" for 127.0.0.1 at 2023-12-15 19:19:02 +0000
+Processing by PassengersController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"6"}
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers" WHERE "passengers"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:73:in `set_passenger'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/passengers_controller.rb:62:in `destroy'
+  [1m[36mPassenger Destroy (1.0ms)[0m  [1m[31mDELETE FROM "passengers" WHERE "passengers"."id" = ?[0m  [["id", 6]]
+  ↳ app/controllers/passengers_controller.rb:62:in `destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/passengers_controller.rb:62:in `destroy'
+Redirected to http://127.0.0.1:3000/passengers
+Completed 302 Found in 8ms (ActiveRecord: 1.2ms | Allocations: 1986)
+
+
+Started GET "/passengers" for 127.0.0.1 at 2023-12-15 19:19:03 +0000
+Processing by PassengersController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:6
+  Rendered passengers/_passenger.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered passengers/_passenger.html.erb (Duration: 0.0ms | Allocations: 23)
+  Rendered passengers/_passenger.html.erb (Duration: 0.0ms | Allocations: 23)
+  Rendered passengers/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 1037)
+  Rendered layout layouts/application.html.erb (Duration: 10.4ms | Allocations: 3219)
+Completed 200 OK in 14ms (Views: 10.9ms | ActiveRecord: 0.1ms | Allocations: 3537)
+
+
+Started GET "/passengers" for 127.0.0.1 at 2023-12-15 19:19:32 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PassengersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:6
+  Rendered passengers/_passenger.html.erb (Duration: 0.6ms | Allocations: 304)
+  Rendered passengers/_passenger.html.erb (Duration: 0.0ms | Allocations: 24)
+  Rendered passengers/_passenger.html.erb (Duration: 0.0ms | Allocations: 23)
+  Rendered passengers/index.html.erb within layouts/application (Duration: 55.4ms | Allocations: 16461)
+  Rendered layout layouts/application.html.erb (Duration: 137.7ms | Allocations: 55714)
+Completed 200 OK in 212ms (Views: 144.3ms | ActiveRecord: 7.2ms | Allocations: 66721)
+
+
+Started GET "/passengers/new" for 127.0.0.1 at 2023-12-15 19:19:34 +0000
+Processing by PassengersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (Duration: 10.5ms | Allocations: 2927)
+  Rendered passengers/new.html.erb within layouts/application (Duration: 13.1ms | Allocations: 3215)
+  Rendered layout layouts/application.html.erb (Duration: 21.4ms | Allocations: 5396)
+Completed 200 OK in 27ms (Views: 22.1ms | ActiveRecord: 0.0ms | Allocations: 5781)
+
+
+Started POST "/passengers" for 127.0.0.1 at 2023-12-15 19:19:46 +0000
+Processing by PassengersController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "passenger"=>{"checkIn"=>"1", "name"=>"Jp", "aircraft"=>"", "destination"=>"London", "gate"=>"33C"}, "commit"=>"Create Passenger"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/passengers_controller.rb:37:in `block in create'
+  [1m[36mPassenger Create (1.1ms)[0m  [1m[32mINSERT INTO "passengers" ("checkIn", "name", "aircraft", "destination", "gate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["checkIn", 1], ["name", "Jp"], ["aircraft", ""], ["destination", "London"], ["gate", "33C"], ["created_at", "2023-12-15 19:19:46.572806"], ["updated_at", "2023-12-15 19:19:46.572806"]]
+  ↳ app/controllers/passengers_controller.rb:37:in `block in create'
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/passengers_controller.rb:37:in `block in create'
+Redirected to http://127.0.0.1:3000/passengers/7
+Completed 302 Found in 12ms (ActiveRecord: 4.6ms | Allocations: 3399)
+
+
+Started GET "/passengers/7" for 127.0.0.1 at 2023-12-15 19:19:46 +0000
+Processing by PassengersController#show as TURBO_STREAM
+  Parameters: {"id"=>"7"}
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers" WHERE "passengers"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:73:in `set_passenger'
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/show.html.erb within layouts/application
+  Rendered passengers/_passenger.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered passengers/show.html.erb within layouts/application (Duration: 1.7ms | Allocations: 685)
+  Rendered layout layouts/application.html.erb (Duration: 9.0ms | Allocations: 2862)
+Completed 200 OK in 19ms (Views: 9.6ms | ActiveRecord: 0.1ms | Allocations: 5437)
+
+
+Started DELETE "/passengers/7" for 127.0.0.1 at 2023-12-15 19:19:49 +0000
+Processing by PassengersController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"7"}
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers" WHERE "passengers"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:73:in `set_passenger'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/passengers_controller.rb:62:in `destroy'
+  [1m[36mPassenger Destroy (0.7ms)[0m  [1m[31mDELETE FROM "passengers" WHERE "passengers"."id" = ?[0m  [["id", 7]]
+  ↳ app/controllers/passengers_controller.rb:62:in `destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/passengers_controller.rb:62:in `destroy'
+Redirected to http://127.0.0.1:3000/passengers
+Completed 302 Found in 7ms (ActiveRecord: 0.9ms | Allocations: 2034)
+
+
+Started GET "/passengers" for 127.0.0.1 at 2023-12-15 19:19:49 +0000
+Processing by PassengersController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:6
+  Rendered passengers/_passenger.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered passengers/_passenger.html.erb (Duration: 0.0ms | Allocations: 23)
+  Rendered passengers/_passenger.html.erb (Duration: 0.0ms | Allocations: 23)
+  Rendered passengers/index.html.erb within layouts/application (Duration: 2.0ms | Allocations: 999)
+  Rendered layout layouts/application.html.erb (Duration: 9.8ms | Allocations: 3213)
+Completed 200 OK in 14ms (Views: 10.3ms | ActiveRecord: 0.1ms | Allocations: 3533)
+
+
+Started GET "/passengers" for 127.0.0.1 at 2023-12-15 19:19:51 +0000
+Processing by PassengersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:6
+  Rendered passengers/_passenger.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered passengers/_passenger.html.erb (Duration: 0.0ms | Allocations: 23)
+  Rendered passengers/_passenger.html.erb (Duration: 0.0ms | Allocations: 23)
+  Rendered passengers/index.html.erb within layouts/application (Duration: 3.9ms | Allocations: 999)
+  Rendered layout layouts/application.html.erb (Duration: 11.9ms | Allocations: 3181)
+Completed 200 OK in 16ms (Views: 12.4ms | ActiveRecord: 0.1ms | Allocations: 3499)
+
+
+Started GET "/passengers" for 127.0.0.1 at 2023-12-15 19:21:19 +0000
+Started GET "/passengers/new" for 127.0.0.1 at 2023-12-15 19:21:20 +0000
+Processing by PassengersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:6
+  Rendered passengers/_passenger.html.erb (Duration: 0.7ms | Allocations: 255)
+  Rendered passengers/_passenger.html.erb (Duration: 0.1ms | Allocations: 23)
+  Rendered passengers/_passenger.html.erb (Duration: 0.0ms | Allocations: 23)
+  Rendered passengers/index.html.erb within layouts/application (Duration: 16.2ms | Allocations: 5503)
+  Rendered layout layouts/application.html.erb (Duration: 51.2ms | Allocations: 20847)
+Completed 200 OK in 78ms (Views: 52.6ms | ActiveRecord: 6.5ms | Allocations: 22651)
+
+
+Processing by PassengersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (Duration: 2.7ms | Allocations: 1819)
+  Rendered passengers/new.html.erb within layouts/application (Duration: 5.1ms | Allocations: 2108)
+  Rendered layout layouts/application.html.erb (Duration: 36.0ms | Allocations: 17437)
+Completed 200 OK in 57ms (Views: 43.0ms | ActiveRecord: 3.6ms | Allocations: 22859)
+
+
+Started GET "/passengers/new" for 127.0.0.1 at 2023-12-15 19:21:22 +0000
+Processing by PassengersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (Duration: 1.5ms | Allocations: 1232)
+  Rendered passengers/new.html.erb within layouts/application (Duration: 1.9ms | Allocations: 1311)
+  Rendered layout layouts/application.html.erb (Duration: 9.5ms | Allocations: 3491)
+Completed 200 OK in 14ms (Views: 10.2ms | ActiveRecord: 0.0ms | Allocations: 3776)
+
+
+Started POST "/passengers" for 127.0.0.1 at 2023-12-15 19:21:29 +0000
+Processing by PassengersController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "passenger"=>{"checkIn"=>"1", "name"=>"Jp", "aircraft"=>"", "destination"=>"London", "gate"=>"33C"}, "commit"=>"Create Passenger"}
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (Duration: 1.7ms | Allocations: 1898)
+  Rendered passengers/new.html.erb within layouts/application (Duration: 2.0ms | Allocations: 1977)
+  Rendered layout layouts/application.html.erb (Duration: 10.2ms | Allocations: 4153)
+Completed 422 Unprocessable Entity in 16ms (Views: 11.0ms | ActiveRecord: 0.0ms | Allocations: 5420)
+
+
+Started POST "/passengers" for 127.0.0.1 at 2023-12-15 19:21:45 +0000
+Processing by PassengersController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "passenger"=>{"checkIn"=>"1", "name"=>"Jp", "aircraft"=>"Ryanair", "destination"=>"London", "gate"=>"33C"}, "commit"=>"Create Passenger"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/passengers_controller.rb:37:in `block in create'
+  [1m[36mPassenger Create (0.9ms)[0m  [1m[32mINSERT INTO "passengers" ("checkIn", "name", "aircraft", "destination", "gate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["checkIn", 1], ["name", "Jp"], ["aircraft", "Ryanair"], ["destination", "London"], ["gate", "33C"], ["created_at", "2023-12-15 19:21:45.892953"], ["updated_at", "2023-12-15 19:21:45.892953"]]
+  ↳ app/controllers/passengers_controller.rb:37:in `block in create'
+  [1m[36mTRANSACTION (3.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/passengers_controller.rb:37:in `block in create'
+Redirected to http://127.0.0.1:3000/passengers/8
+Completed 302 Found in 11ms (ActiveRecord: 4.5ms | Allocations: 2019)
+
+
+Started GET "/passengers/8" for 127.0.0.1 at 2023-12-15 19:21:45 +0000
+Processing by PassengersController#show as TURBO_STREAM
+  Parameters: {"id"=>"8"}
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers" WHERE "passengers"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:73:in `set_passenger'
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/show.html.erb within layouts/application
+  Rendered passengers/_passenger.html.erb (Duration: 1.0ms | Allocations: 240)
+  Rendered passengers/show.html.erb within layouts/application (Duration: 4.5ms | Allocations: 1017)
+  Rendered layout layouts/application.html.erb (Duration: 11.4ms | Allocations: 3225)
+Completed 200 OK in 19ms (Views: 12.0ms | ActiveRecord: 0.1ms | Allocations: 4676)
+
+
+Started DELETE "/passengers/8" for 127.0.0.1 at 2023-12-15 19:21:49 +0000
+Processing by PassengersController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"8"}
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers" WHERE "passengers"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:73:in `set_passenger'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/passengers_controller.rb:62:in `destroy'
+  [1m[36mPassenger Destroy (0.7ms)[0m  [1m[31mDELETE FROM "passengers" WHERE "passengers"."id" = ?[0m  [["id", 8]]
+  ↳ app/controllers/passengers_controller.rb:62:in `destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/passengers_controller.rb:62:in `destroy'
+Redirected to http://127.0.0.1:3000/passengers
+Completed 302 Found in 7ms (ActiveRecord: 0.9ms | Allocations: 1909)
+
+
+Started GET "/passengers" for 127.0.0.1 at 2023-12-15 19:21:50 +0000
+Processing by PassengersController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:6
+  Rendered passengers/_passenger.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered passengers/_passenger.html.erb (Duration: 0.0ms | Allocations: 23)
+  Rendered passengers/_passenger.html.erb (Duration: 0.0ms | Allocations: 23)
+  Rendered passengers/index.html.erb within layouts/application (Duration: 3.0ms | Allocations: 1271)
+  Rendered layout layouts/application.html.erb (Duration: 10.6ms | Allocations: 3452)
+Completed 200 OK in 16ms (Views: 11.1ms | ActiveRecord: 0.1ms | Allocations: 3857)
+
+
+Started GET "/passengers" for 127.0.0.1 at 2023-12-15 19:21:52 +0000
+Processing by PassengersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:6
+  Rendered passengers/_passenger.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered passengers/_passenger.html.erb (Duration: 0.0ms | Allocations: 23)
+  Rendered passengers/_passenger.html.erb (Duration: 0.0ms | Allocations: 23)
+  Rendered passengers/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 978)
+  Rendered layout layouts/application.html.erb (Duration: 9.4ms | Allocations: 3159)
+Completed 200 OK in 14ms (Views: 9.9ms | ActiveRecord: 0.1ms | Allocations: 3470)
+
+

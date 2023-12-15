@@ -39,7 +39,7 @@ end
         format.json { render :show, status: :created, location: @passenger }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @passenger.errors, status: :unprocessable_entity }
+        format.json { render json: { error: "A piece of information was left empty. Please fill in all the information." }, status: :unprocessable_entity }
       end
     end
   end
@@ -52,7 +52,7 @@ end
         format.json { render :show, status: :ok, location: @passenger }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @passenger.errors, status: :unprocessable_entity }
+        format.json { render json: { error: "A piece of information was left empty. Please fill in all the information." }, status: :unprocessable_entity }
       end
     end
   end
