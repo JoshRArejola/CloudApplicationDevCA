@@ -1,0 +1,325 @@
+  [1m[35m (4.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-12-14 13:59:47.806189', '2023-12-14 13:59:47.806192') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePassengers (20231214135935)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "passengers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "checkIn" boolean, "name" varchar, "aircraft" varchar, "destination" varchar, "gate" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231214135935') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2023-12-14 14:22:54 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/railties-7.1.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/railties-7.1.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.1ms | Allocations: 376)
+Completed 200 OK in 203ms (Views: 43.1ms | ActiveRecord: 0.0ms | Allocations: 8797)
+
+
+Started GET "/passengers" for 127.0.0.1 at 2023-12-14 14:22:59 +0000
+Processing by PassengersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:6
+  Rendered passengers/index.html.erb within layouts/application (Duration: 6.0ms | Allocations: 1493)
+  Rendered layout layouts/application.html.erb (Duration: 577.2ms | Allocations: 93441)
+Completed 500 Internal Server Error in 734ms (ActiveRecord: 3.6ms | Allocations: 104243)
+
+
+  
+ActionView::Template::Error (Permission denied @ rb_file_s_rename - (C:/Users/Joshr/Desktop/College/4th/Cloud Application/AirportManagement/tmp/cache/assets/sprockets/v4.0.0/gA/gAVYdL_TrlMgASeDH7XHwTbibVO3---hNv0oaQyzmMU.cache.22740.19808.966062, C:/Users/Joshr/Desktop/College/4th/Cloud Application/AirportManagement/tmp/cache/assets/sprockets/v4.0.0/gA/gAVYdL_TrlMgASeDH7XHwTbibVO3---hNv0oaQyzmMU.cache)):
+  
+sprockets (4.2.1) lib/sprockets/path_utils.rb:362:in `rename'
+sprockets (4.2.1) lib/sprockets/path_utils.rb:362:in `atomic_write'
+sprockets (4.2.1) lib/sprockets/cache/file_store.rb:112:in `set'
+sprockets (4.2.1) lib/sprockets/cache.rb:227:in `set'
+sprockets (4.2.1) lib/sprockets/cache.rb:143:in `set'
+sprockets (4.2.1) lib/sprockets/loader.rb:265:in `store_asset'
+sprockets (4.2.1) lib/sprockets/loader.rb:228:in `load_from_unloaded'
+sprockets (4.2.1) lib/sprockets/loader.rb:59:in `block in load'
+sprockets (4.2.1) lib/sprockets/loader.rb:339:in `fetch_asset_from_dependency_cache'
+sprockets (4.2.1) lib/sprockets/loader.rb:43:in `load'
+sprockets (4.2.1) lib/sprockets/cached_environment.rb:44:in `block in load'
+concurrent-ruby (1.2.2) lib/concurrent-ruby/concurrent/map.rb:207:in `block in fetch_or_store'
+concurrent-ruby (1.2.2) lib/concurrent-ruby/concurrent/map.rb:187:in `fetch'
+concurrent-ruby (1.2.2) lib/concurrent-ruby/concurrent/map.rb:206:in `fetch_or_store'
+sprockets (4.2.1) lib/sprockets/cached_environment.rb:44:in `load'
+sprockets (4.2.1) lib/sprockets/context.rb:117:in `load'
+sprockets (4.2.1) lib/sprockets/context.rb:145:in `depend_on_asset'
+sprockets (4.2.1) lib/sprockets/context.rb:185:in `link_asset'
+sprockets-rails (3.4.2) lib/sprockets/rails/context.rb:27:in `compute_asset_path'
+actionview (7.1.2) lib/action_view/helpers/asset_url_helper.rb:204:in `asset_path'
+sprockets-rails (3.4.2) lib/sprockets/rails/sourcemapping_url_processor.rb:41:in `sourcemap_asset_path'
+sprockets-rails (3.4.2) lib/sprockets/rails/sourcemapping_url_processor.rb:34:in `resolved_sourcemap_comment'
+sprockets-rails (3.4.2) lib/sprockets/rails/sourcemapping_url_processor.rb:15:in `block in call'
+sprockets-rails (3.4.2) lib/sprockets/rails/sourcemapping_url_processor.rb:11:in `gsub'
+sprockets-rails (3.4.2) lib/sprockets/rails/sourcemapping_url_processor.rb:11:in `call'
+sprockets (4.2.1) lib/sprockets/processor_utils.rb:84:in `call_processor'
+sprockets (4.2.1) lib/sprockets/processor_utils.rb:66:in `block in call_processors'
+sprockets (4.2.1) lib/sprockets/processor_utils.rb:65:in `reverse_each'
+sprockets (4.2.1) lib/sprockets/processor_utils.rb:65:in `call_processors'
+sprockets (4.2.1) lib/sprockets/loader.rb:184:in `load_from_unloaded'
+sprockets (4.2.1) lib/sprockets/loader.rb:59:in `block in load'
+sprockets (4.2.1) lib/sprockets/loader.rb:339:in `fetch_asset_from_dependency_cache'
+sprockets (4.2.1) lib/sprockets/loader.rb:43:in `load'
+sprockets (4.2.1) lib/sprockets/cached_environment.rb:44:in `block in load'
+concurrent-ruby (1.2.2) lib/concurrent-ruby/concurrent/map.rb:207:in `block in fetch_or_store'
+concurrent-ruby (1.2.2) lib/concurrent-ruby/concurrent/map.rb:187:in `fetch'
+concurrent-ruby (1.2.2) lib/concurrent-ruby/concurrent/map.rb:206:in `fetch_or_store'
+sprockets (4.2.1) lib/sprockets/cached_environment.rb:44:in `load'
+sprockets (4.2.1) lib/sprockets/bundle.rb:27:in `call'
+sprockets (4.2.1) lib/sprockets/processor_utils.rb:84:in `call_processor'
+sprockets (4.2.1) lib/sprockets/processor_utils.rb:66:in `block in call_processors'
+sprockets (4.2.1) lib/sprockets/processor_utils.rb:65:in `reverse_each'
+sprockets (4.2.1) lib/sprockets/processor_utils.rb:65:in `call_processors'
+sprockets (4.2.1) lib/sprockets/loader.rb:184:in `load_from_unloaded'
+sprockets (4.2.1) lib/sprockets/loader.rb:59:in `block in load'
+sprockets (4.2.1) lib/sprockets/loader.rb:339:in `fetch_asset_from_dependency_cache'
+sprockets (4.2.1) lib/sprockets/loader.rb:43:in `load'
+sprockets (4.2.1) lib/sprockets/cached_environment.rb:44:in `block in load'
+concurrent-ruby (1.2.2) lib/concurrent-ruby/concurrent/map.rb:207:in `block in fetch_or_store'
+concurrent-ruby (1.2.2) lib/concurrent-ruby/concurrent/map.rb:187:in `fetch'
+concurrent-ruby (1.2.2) lib/concurrent-ruby/concurrent/map.rb:206:in `fetch_or_store'
+sprockets (4.2.1) lib/sprockets/cached_environment.rb:44:in `load'
+sprockets (4.2.1) lib/sprockets/base.rb:81:in `find_asset'
+sprockets (4.2.1) lib/sprockets/base.rb:88:in `find_all_linked_assets'
+sprockets (4.2.1) lib/sprockets/manifest.rb:125:in `each'
+sprockets (4.2.1) lib/sprockets/manifest.rb:125:in `to_a'
+sprockets (4.2.1) lib/sprockets/manifest.rb:125:in `block (2 levels) in find'
+concurrent-ruby (1.2.2) lib/concurrent-ruby/concurrent/executor/safe_task_executor.rb:24:in `block in execute'
+concurrent-ruby (1.2.2) lib/concurrent-ruby/concurrent/synchronization/mutex_lockable_object.rb:48:in `block in synchronize'
+concurrent-ruby (1.2.2) lib/concurrent-ruby/concurrent/synchronization/mutex_lockable_object.rb:48:in `synchronize'
+concurrent-ruby (1.2.2) lib/concurrent-ruby/concurrent/synchronization/mutex_lockable_object.rb:48:in `synchronize'
+concurrent-ruby (1.2.2) lib/concurrent-ruby/concurrent/executor/safe_task_executor.rb:22:in `execute'
+concurrent-ruby (1.2.2) lib/concurrent-ruby/concurrent/promise.rb:564:in `block in realize'
+concurrent-ruby (1.2.2) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:352:in `run_task'
+concurrent-ruby (1.2.2) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:343:in `block (3 levels) in create_worker'
+concurrent-ruby (1.2.2) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:334:in `loop'
+concurrent-ruby (1.2.2) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:334:in `block (2 levels) in create_worker'
+concurrent-ruby (1.2.2) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:333:in `catch'
+concurrent-ruby (1.2.2) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:333:in `block in create_worker'
+Started GET "/passengers" for 127.0.0.1 at 2023-12-14 14:23:22 +0000
+Processing by PassengersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:6
+  Rendered passengers/index.html.erb within layouts/application (Duration: 1.2ms | Allocations: 485)
+  Rendered layout layouts/application.html.erb (Duration: 82.2ms | Allocations: 38977)
+Completed 200 OK in 87ms (Views: 82.8ms | ActiveRecord: 0.1ms | Allocations: 39270)
+
+
+Started GET "/passengers/new" for 127.0.0.1 at 2023-12-14 14:23:43 +0000
+Processing by PassengersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (Duration: 114.8ms | Allocations: 6791)
+  Rendered passengers/new.html.erb within layouts/application (Duration: 136.2ms | Allocations: 7078)
+  Rendered layout layouts/application.html.erb (Duration: 144.9ms | Allocations: 9270)
+Completed 200 OK in 291ms (Views: 145.6ms | ActiveRecord: 0.4ms | Allocations: 29669)
+
+
+Started POST "/passengers" for 127.0.0.1 at 2023-12-14 14:24:03 +0000
+Processing by PassengersController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "passenger"=>{"checkIn"=>"1", "name"=>"Joooosh", "aircraft"=>"RyanAir", "destination"=>"London", "gate"=>"54A"}, "commit"=>"Create Passenger"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/passengers_controller.rb:27:in `block in create'
+  [1m[36mPassenger Create (0.9ms)[0m  [1m[32mINSERT INTO "passengers" ("checkIn", "name", "aircraft", "destination", "gate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["checkIn", 1], ["name", "Joooosh"], ["aircraft", "RyanAir"], ["destination", "London"], ["gate", "54A"], ["created_at", "2023-12-14 14:24:03.339819"], ["updated_at", "2023-12-14 14:24:03.339819"]]
+  ↳ app/controllers/passengers_controller.rb:27:in `block in create'
+  [1m[36mTRANSACTION (4.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/passengers_controller.rb:27:in `block in create'
+Redirected to http://127.0.0.1:3000/passengers/1
+Completed 302 Found in 14ms (ActiveRecord: 5.5ms | Allocations: 3433)
+
+
+Started GET "/passengers/1" for 127.0.0.1 at 2023-12-14 14:24:03 +0000
+Processing by PassengersController#show as TURBO_STREAM
+  Parameters: {"id"=>"1"}
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers" WHERE "passengers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:63:in `set_passenger'
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/show.html.erb within layouts/application
+  Rendered passengers/_passenger.html.erb (Duration: 0.9ms | Allocations: 260)
+  Rendered passengers/show.html.erb within layouts/application (Duration: 18.2ms | Allocations: 1392)
+  Rendered layout layouts/application.html.erb (Duration: 25.5ms | Allocations: 3568)
+Completed 200 OK in 51ms (Views: 26.2ms | ActiveRecord: 0.2ms | Allocations: 6609)
+
+
+Started GET "/" for 127.0.0.1 at 2023-12-15 12:30:21 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/railties-7.1.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/railties-7.1.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.2ms | Allocations: 376)
+Completed 200 OK in 219ms (Views: 48.0ms | ActiveRecord: 0.0ms | Allocations: 4839)
+
+
+Started GET "/passengers" for 127.0.0.1 at 2023-12-15 12:30:26 +0000
+Processing by PassengersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:6
+  Rendered passengers/_passenger.html.erb (Duration: 0.9ms | Allocations: 295)
+  Rendered passengers/index.html.erb within layouts/application (Duration: 159.0ms | Allocations: 25692)
+  Rendered layout layouts/application.html.erb (Duration: 577.0ms | Allocations: 64689)
+Completed 200 OK in 756ms (Views: 587.9ms | ActiveRecord: 3.6ms | Allocations: 71913)
+
+
+Started GET "/passengers/1" for 127.0.0.1 at 2023-12-15 12:30:31 +0000
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers" WHERE "passengers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:63:in `set_passenger'
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/show.html.erb within layouts/application
+  Rendered passengers/_passenger.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered passengers/show.html.erb within layouts/application (Duration: 76.1ms | Allocations: 1963)
+  Rendered layout layouts/application.html.erb (Duration: 84.4ms | Allocations: 4144)
+Completed 200 OK in 119ms (Views: 85.1ms | ActiveRecord: 0.2ms | Allocations: 6755)
+
+
+Started DELETE "/passengers/1" for 127.0.0.1 at 2023-12-15 12:30:38 +0000
+Processing by PassengersController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"1"}
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers" WHERE "passengers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:63:in `set_passenger'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/passengers_controller.rb:52:in `destroy'
+  [1m[36mPassenger Destroy (0.7ms)[0m  [1m[31mDELETE FROM "passengers" WHERE "passengers"."id" = ?[0m  [["id", 1]]
+  ↳ app/controllers/passengers_controller.rb:52:in `destroy'
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/passengers_controller.rb:52:in `destroy'
+Redirected to http://127.0.0.1:3000/passengers
+Completed 302 Found in 13ms (ActiveRecord: 4.8ms | Allocations: 2415)
+
+
+Started GET "/passengers" for 127.0.0.1 at 2023-12-15 12:30:38 +0000
+Processing by PassengersController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:6
+  Rendered passengers/index.html.erb within layouts/application (Duration: 1.6ms | Allocations: 700)
+  Rendered layout layouts/application.html.erb (Duration: 8.9ms | Allocations: 2882)
+Completed 200 OK in 13ms (Views: 9.4ms | ActiveRecord: 0.1ms | Allocations: 3199)
+
+
+Started GET "/passengers/new" for 127.0.0.1 at 2023-12-15 12:30:40 +0000
+Processing by PassengersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (Duration: 52.8ms | Allocations: 2988)
+  Rendered passengers/new.html.erb within layouts/application (Duration: 75.7ms | Allocations: 3273)
+  Rendered layout layouts/application.html.erb (Duration: 83.5ms | Allocations: 5454)
+Completed 200 OK in 98ms (Views: 84.4ms | ActiveRecord: 0.0ms | Allocations: 5831)
+
+
+Started GET "/passengers" for 127.0.0.1 at 2023-12-15 12:30:43 +0000
+Processing by PassengersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:6
+  Rendered passengers/index.html.erb within layouts/application (Duration: 1.3ms | Allocations: 671)
+  Rendered layout layouts/application.html.erb (Duration: 8.8ms | Allocations: 2853)
+Completed 200 OK in 13ms (Views: 9.4ms | ActiveRecord: 0.1ms | Allocations: 3133)
+
+
+Started GET "/passengers/new" for 127.0.0.1 at 2023-12-15 12:30:47 +0000
+Processing by PassengersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (Duration: 1.8ms | Allocations: 1314)
+  Rendered passengers/new.html.erb within layouts/application (Duration: 2.1ms | Allocations: 1393)
+  Rendered layout layouts/application.html.erb (Duration: 9.7ms | Allocations: 3573)
+Completed 200 OK in 14ms (Views: 10.3ms | ActiveRecord: 0.0ms | Allocations: 3854)
+
+
+Started POST "/passengers" for 127.0.0.1 at 2023-12-15 12:30:53 +0000
+Processing by PassengersController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "passenger"=>{"checkIn"=>"1", "name"=>"Joshua", "aircraft"=>"RyanAir", "destination"=>"London", "gate"=>"5"}, "commit"=>"Create Passenger"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/passengers_controller.rb:27:in `block in create'
+  [1m[36mPassenger Create (1.2ms)[0m  [1m[32mINSERT INTO "passengers" ("checkIn", "name", "aircraft", "destination", "gate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["checkIn", 1], ["name", "Joshua"], ["aircraft", "RyanAir"], ["destination", "London"], ["gate", "5"], ["created_at", "2023-12-15 12:30:53.114824"], ["updated_at", "2023-12-15 12:30:53.114824"]]
+  ↳ app/controllers/passengers_controller.rb:27:in `block in create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/passengers_controller.rb:27:in `block in create'
+Redirected to http://127.0.0.1:3000/passengers/2
+Completed 302 Found in 10ms (ActiveRecord: 1.4ms | Allocations: 3102)
+
+
+Started GET "/passengers/2" for 127.0.0.1 at 2023-12-15 12:30:53 +0000
+Processing by PassengersController#show as TURBO_STREAM
+  Parameters: {"id"=>"2"}
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers" WHERE "passengers"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:63:in `set_passenger'
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/show.html.erb within layouts/application
+  Rendered passengers/_passenger.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered passengers/show.html.erb within layouts/application (Duration: 0.9ms | Allocations: 622)
+  Rendered layout layouts/application.html.erb (Duration: 8.2ms | Allocations: 2799)
+Completed 200 OK in 13ms (Views: 8.7ms | ActiveRecord: 0.1ms | Allocations: 3418)
+
+
+Started GET "/passengers" for 127.0.0.1 at 2023-12-15 12:31:15 +0000
+Processing by PassengersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:6
+  Rendered passengers/_passenger.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered passengers/index.html.erb within layouts/application (Duration: 1.4ms | Allocations: 619)
+  Rendered layout layouts/application.html.erb (Duration: 8.7ms | Allocations: 2803)
+Completed 200 OK in 13ms (Views: 9.2ms | ActiveRecord: 0.1ms | Allocations: 3077)
+
+
+Started GET "/passengers" for 127.0.0.1 at 2023-12-15 12:36:10 +0000
+Processing by PassengersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:6
+  Rendered passengers/_passenger.html.erb (Duration: 0.8ms | Allocations: 255)
+  Rendered passengers/index.html.erb within layouts/application (Duration: 10.4ms | Allocations: 5220)
+  Rendered layout layouts/application.html.erb (Duration: 42.1ms | Allocations: 20469)
+Completed 200 OK in 58ms (Views: 45.5ms | ActiveRecord: 3.6ms | Allocations: 22096)
+
+
+Started GET "/passengers" for 127.0.0.1 at 2023-12-15 12:36:22 +0000
+Processing by PassengersController#index as */*
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:6
+  Rendered passengers/_passenger.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered passengers/index.html.erb within layouts/application (Duration: 8.5ms | Allocations: 1421)
+  Rendered layout layouts/application.html.erb (Duration: 19.4ms | Allocations: 4002)
+Completed 200 OK in 30ms (Views: 20.2ms | ActiveRecord: 0.1ms | Allocations: 5572)
+
+
+Started GET "/passengers" for 127.0.0.1 at 2023-12-15 12:37:08 +0000
+Processing by PassengersController#index as JSON
+  Parameters: {"passenger"=>{}}
+  Rendering passengers/index.json.jbuilder
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.json.jbuilder:1
+  Rendered collection of passengers/_passenger.json.jbuilder [1 times] (Duration: 0.9ms | Allocations: 370)
+  Rendered passengers/index.json.jbuilder (Duration: 7.4ms | Allocations: 4338)
+Completed 200 OK in 26ms (Views: 20.2ms | ActiveRecord: 4.0ms | Allocations: 5522)
+
+
+Started GET "/passengers" for 127.0.0.1 at 2023-12-15 12:39:57 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PassengersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:6
+  Rendered passengers/_passenger.html.erb (Duration: 0.8ms | Allocations: 304)
+  Rendered passengers/index.html.erb within layouts/application (Duration: 59.2ms | Allocations: 16216)
+  Rendered layout layouts/application.html.erb (Duration: 152.4ms | Allocations: 55279)
+Completed 200 OK in 229ms (Views: 162.7ms | ActiveRecord: 4.2ms | Allocations: 66205)
+
+

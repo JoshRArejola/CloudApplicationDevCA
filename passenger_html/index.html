@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Passengers HTML Client</title>
+    </head>
+    <body onLoad="loadData()">
+        <h2>Passenger's client</h2>
+
+        <div id="passengers" />
+
+        <script>
+            async function loadData() {
+                var url = "http://127.0.0.1:3000/passengers"
+                var response = await fetch(url, {headers: {'Accept': 'application/json'} })
+                console.log(response.json()) 
+            }
+        </script>
+    </body>
+</html>
