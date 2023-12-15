@@ -20,7 +20,7 @@
                     if(data[i]["checkIn"]){
                         checkIn = "Checked in"
                     }
-                    div += checkIn + ' : ' + data[i]['name'] + "<br /> "
+                    div += checkIn + ' : ' + data[i]['name'] + ', ' + data[i]['aircraft'] + ', ' + data[i]['destination'] + ', ' + data[i]['gate'] + "<br /> "
                 }
                 document.getElementById('passengers').innerHTML = div
             }
