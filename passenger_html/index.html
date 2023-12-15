@@ -13,7 +13,16 @@
             async function loadData() {
                 var url = "http://127.0.0.1:3000/passengers"
                 var response = await fetch(url, {headers: {'Accept': 'application/json'} })
-                console.log(response.json()) 
+                var data = await response.json()
+                var div = ''
+                for (var i=0; i < data.length; i++){
+                    var checkIn = "Not checked in"
+                    if(data[i]["checkIn"]){
+                        checkIn = "Checked in"
+                    }
+                    div += checkIn + ' : ' + data[i]['name'] + "<br /> "
+                }
+                document.getElementById('passengers').innerHTML = div
             }
         </script>
     </body>
