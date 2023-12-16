@@ -3,26 +3,88 @@
     <head>
         <meta charset="utf-8">
         <title>Passengers HTML Client</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy/RX4NfG3VMI1QbFi/g5Wf5J93I1HAAWS" crossorigin="anonymous">
+        <style>
+            body {
+                background-color: #f8f9fa; 
+                margin: 0; 
+            }
+            .header, .footer {
+                background-color: #343a40; 
+                color: #ffffff; 
+                padding: 15px 0; 
+                text-align: center; 
+            }
+            .container {
+                text-align: center; 
+                margin-top: 30px;
+            }
+            #passengers {
+                border: 1px solid #dee2e6; 
+                padding: 15px;
+                background-color: #ffffff; 
+                margin-top: 20px;
+            }
+            #passengers h3 {
+                color: #007bff; 
+            }
+            .btn-primary {
+                background-color: #28a745 !important; 
+                border-color: #28a745 !important;
+            }
+        </style>
     </head>
-    <body onLoad="loadData()">
-        <h2>Passenger's client</h2>
+    <body>
+        <div class="header py-3">
+            <h2 class="text-center mb-0">Check in Identifier</h2>
+        </div>
 
-        <div id="passengers" />
+        <div class="container">
+            <button class="btn btn-primary mb-3" onclick="loadData()">Show Passengers</button>
+
+            <div id="passengers"></div>
+        </div>
+
+        <div class="footer py-2">
+            <p class="text-center mb-0">© 2023 Passenger Airliners</p>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy/RX4NfG3VMI1QbFi/g5Wf5J93I1HAAWS" crossorigin="anonymous"></script>
 
         <script>
             async function loadData() {
-                var url = "http://127.0.0.1:3000/passengers"
-                var response = await fetch(url, {headers: {'Accept': 'application/json'} })
-                var data = await response.json()
-                var div = ''
-                for (var i=0; i < data.length; i++){
-                    var checkIn = "Not checked in"
-                    if(data[i]["checkIn"]){
-                        checkIn = "Checked in"
+                var url = "http://127.0.0.1:3000/passengers";
+                var response = await fetch(url, {headers: {'Accept': 'application/json'} });
+                var data = await response.json();
+                var div = '';
+                
+                // Separate passengers based on checkIn status
+                var checkedInPassengers = [];
+                var notCheckedInPassengers = [];
+
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i]["checkIn"]) {
+                        checkedInPassengers.push(data[i]);
+                    } else {
+                        notCheckedInPassengers.push(data[i]);
                     }
-                    div += checkIn + ' : ' + data[i]['name'] + ', ' + data[i]['aircraft'] + ', ' + data[i]['destination'] + ', ' + data[i]['gate'] + "<br /> "
                 }
-                document.getElementById('passengers').innerHTML = div
+
+                // Display checked-in passengers
+                div += "<h3>Checked-in Passengers:</h3>";
+                for (var i = 0; i < checkedInPassengers.length; i++) {
+                    div += "Checked in: " + checkedInPassengers[i]['name'] + ', ' + checkedInPassengers[i]['aircraft'] + ', ' + checkedInPassengers[i]['destination'] + ', ' + checkedInPassengers[i]['gate'] + "<br />";
+                }
+
+                // Display not checked-in passengers
+                div += "<h3>Not Checked-in Passengers:</h3>";
+                for (var i = 0; i < notCheckedInPassengers.length; i++) {
+                    div += "Not checked in: " + notCheckedInPassengers[i]['name'] + ', ' + notCheckedInPassengers[i]['aircraft'] + ', ' + notCheckedInPassengers[i]['destination'] + ', ' + notCheckedInPassengers[i]['gate'] + "<br />";
+                }
+
+                document.getElementById('passengers').innerHTML = div;
             }
         </script>
     </body>
