@@ -1,8 +1,31 @@
+<!-- new.html.erb -->
+
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  form {
+    width: 10%; /* Adjust the width as needed */
+  }
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  div {
+    margin-top: 20px;
+  }
+</style>
+
 <h1>New passenger</h1>
 
 <%= render "form", passenger: @passenger %>
-
-<br>
 
 <div>
   <%= link_to "Back to passengers", passengers_path %>

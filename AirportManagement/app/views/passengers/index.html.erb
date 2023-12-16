@@ -1,14 +1,97 @@
+<!-- index.html.erb -->
+
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  table {
+    margin-bottom: 20px;
+    border-collapse: collapse;
+    width: 80%;
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  button {
+    margin-top: 10px;
+  }
+
+  .delete-button {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  #passengers {
+    display: none;
+  }
+</style>
+
 <p style="color: green"><%= notice %></p>
 
 <h1>Passengers</h1>
 
+<button id="showPassengerBtn">Show Passengers</button>
+
 <div id="passengers">
-  <% @passengers.each do |passenger| %>
-    <%= render passenger %>
-    <p>
-      <%= link_to "Show this passenger", passenger %>
-    </p>
-  <% end %>
+  <table>
+    <thead>
+      <tr>
+        <th>Check-in</th>
+        <th>Name</th>
+        <th>Aircraft</th>
+        <th>Destination</th>
+        <th>Gate</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @passengers.each do |passenger| %>
+        <tr>
+          <td><%= passenger.checkIn ? 'Yes' : 'No' %></td>
+          <td><%= passenger.name %></td>
+          <td><%= passenger.aircraft %></td>
+          <td><%= passenger.destination %></td>
+          <td><%= passenger.gate %></td>
+          <td>
+            <%= link_to "Show this passenger", passenger %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
-<%= link_to "New passenger", new_passenger_path %>
+<%= button_to "New passenger", new_passenger_path, method: :get, class: "btn", id: "newPassengerBtn" %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const showPassengerBtn = document.getElementById('showPassengerBtn');
+    const passengersDiv = document.getElementById('passengers');
+
+    showPassengerBtn.addEventListener('click', function() {
+      if (passengersDiv.style.display === 'none') {
+        passengersDiv.style.display = 'block';
+      } else {
+        passengersDiv.style.display = 'none';
+      }
+    });
+  });
+</script>
